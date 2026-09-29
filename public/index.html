@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog REST API // Interactive Testing Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="badge badge-node">Node.js</span>
+        <span class="badge badge-express">Express.js</span>
+        <h1>Blog REST API</h1>
+        <span class="version-tag">v1.0.0</span>
+      </div>
+      <div class="header-links">
+        <a href="/posts" target="_blank" class="api-link">Raw API: /posts ↗</a>
+        <a href="#quick-test" class="btn btn-sm btn-primary">Live Tester</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Project Objectives Banner -->
+    <section class="banner">
+      <div>
+        <h2>Week 06 Minor Project: Blog REST API</h2>
+        <p>A production-ready RESTful API demonstrating CRUD operations, modular Express architecture, request validation, and JSON file storage persistence.</p>
+      </div>
+      <div class="stats-box">
+        <div class="stat-item">
+          <span class="stat-val" id="totalPostsCount">5</span>
+          <span class="stat-lbl">Active Posts</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val" style="color: #10b981;">5/5</span>
+          <span class="stat-lbl">CRUD Endpoints</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Live API Testing Console -->
+    <section id="quick-test" class="test-console-section">
+      <div class="section-title">
+        <h3>⚡ Live API Request Console</h3>
+        <p>Test any endpoint right from your browser or copy cURL / Postman commands.</p>
+      </div>
+
+      <div class="console-grid">
+        <!-- Request Builder Panel -->
+        <div class="card request-card">
+          <div class="card-header">
+            <h4>Request Configuration</h4>
+            <span class="pill">Client</span>
+          </div>
+
+          <div class="form-group">
+            <label>HTTP Method & Endpoint</label>
+            <div class="endpoint-picker">
+              <select id="requestMethod" class="select-method">
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                <option value="PUT">PUT</option>
+                <option value="DELETE">DELETE</option>
+              </select>
+              <input type="text" id="requestUrl" class="input-url" value="/posts" />
+              <button id="sendBtn" class="btn btn-primary">Send Request</button>
+            </div>
+          </div>
+
+          <!-- Quick Templates -->
+          <div class="form-group">
+            <label>Quick Action Presets</label>
+            <div class="preset-buttons">
+              <button class="preset-btn" onclick="setPreset('GET_ALL')">GET All Posts</button>
+              <button class="preset-btn" onclick="setPreset('GET_ONE')">GET Single Post</button>
+              <button class="preset-btn" onclick="setPreset('POST_NEW')">POST Create Post</button>
+              <button class="preset-btn" onclick="setPreset('PUT_UPDATE')">PUT Update Post</button>
+              <button class="preset-btn" onclick="setPreset('DELETE_ONE')">DELETE Post</button>
+            </div>
+          </div>
+
+          <!-- Request Body (For POST / PUT) -->
+          <div class="form-group" id="bodyGroup">
+            <div class="label-with-tip">
+              <label>JSON Request Body (payload)</label>
+              <span class="tip">application/json</span>
+            </div>
+            <textarea id="requestBody" rows="6" class="code-textarea" placeholder='{\n  "title": "My Post",\n  "content": "...",\n  "author": "...",\n  "category": "..."\n}'></textarea>
+          </div>
+        </div>
+
+        <!-- Response Viewer Panel -->
+        <div class="card response-card">
+          <div class="card-header">
+            <h4>API Response</h4>
+            <div class="response-meta" id="responseMeta">
+              <span class="status-badge status-idle">Ready</span>
+              <span class="latency" id="responseLatency">0 ms</span>
+            </div>
+          </div>
+
+          <div class="response-body">
+            <pre><code id="responseCode">{\n  "message": "Click 'Send Request' or select a preset to test the API"\n}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Current Blog Posts in Database -->
+    <section class="posts-section">
+      <div class="section-title-row">
+        <div>
+          <h3>📚 Blog Posts Storage (Live DB View)</h3>
+          <p>Real-time view of `data/posts.json` storage.</p>
+        </div>
+        <button id="refreshPostsBtn" class="btn btn-sm btn-secondary">↻ Refresh Posts</button>
+      </div>
+
+      <div class="posts-grid" id="postsContainer">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- API Reference Table -->
+    <section class="api-docs-section">
+      <h3>📖 REST Endpoints Specification</h3>
+      <div class="table-responsive">
+        <table class="api-table">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Endpoint</th>
+              <th>Description</th>
+              <th>Status Code</th>
+              <th>Payload</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="method-badge get">GET</span></td>
+              <td><code>/posts</code></td>
+              <td>Retrieve all blog posts (supports ?search, ?category, ?sort)</td>
+              <td><code>200 OK</code></td>
+              <td>None</td>
+            </tr>
+            <tr>
+              <td><span class="method-badge get">GET</span></td>
+              <td><code>/posts/:id</code></td>
+              <td>Retrieve a single blog post by unique ID</td>
+              <td><code>200 OK / 404</code></td>
+              <td>None</td>
+            </tr>
+            <tr>
+              <td><span class="method-badge post">POST</span></td>
+              <td><code>/posts</code></td>
+              <td>Create a new blog post with title, content, author, category</td>
+              <td><code>201 Created / 400</code></td>
+              <td>JSON Object</td>
+            </tr>
+            <tr>
+              <td><span class="method-badge put">PUT</span></td>
+              <td><code>/posts/:id</code></td>
+              <td>Update an existing blog post by ID</td>
+              <td><code>200 OK / 404 / 400</code></td>
+              <td>JSON Object</td>
+            </tr>
+            <tr>
+              <td><span class="method-badge delete">DELETE</span></td>
+              <td><code>/posts/:id</code></td>
+              <td>Delete a blog post by ID</td>
+              <td><code>200 OK / 404</code></td>
+              <td>None</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>Node.js & Express.js Blog REST API • Built for Week 06 Minor Project</p>
+      <p>Author: <strong>Famitha</strong> • Status: <strong>Ready for Evaluation</strong></p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

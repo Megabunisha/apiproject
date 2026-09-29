@@ -1,0 +1,143 @@
+{
+  "info": {
+    "_postman_id": "89b7b72d-1284-482a-a5f1-blog-rest-api",
+    "name": "Blog REST API - Week 06 Minor Project",
+    "description": "Complete collection of CRUD operations for testing the Blog REST API in Postman, Thunder Client, or Insomnia.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. GET All Blog Posts",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Accept", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/posts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["posts"]
+        },
+        "description": "Retrieve all blog posts from the API in JSON format."
+      }
+    },
+    {
+      "name": "2. GET Single Blog Post by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Accept", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/posts/post-101",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["posts", "post-101"]
+        },
+        "description": "Retrieve a specific blog post using its ID. Returns 404 if not found."
+      }
+    },
+    {
+      "name": "3. POST Create New Blog Post",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Accept", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Scaling REST APIs with Node.js and Express\",\n  \"content\": \"In this article, we examine caching strategies, clustering, and asynchronous non-blocking I/O architectures to optimize throughput.\",\n  \"author\": \"Famitha\",\n  \"category\": \"Backend Architecture\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/posts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["posts"]
+        },
+        "description": "Create a new blog post. Returns 201 Created or 400 Bad Request if validation fails."
+      }
+    },
+    {
+      "name": "4. PUT Update Existing Blog Post",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Accept", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Mastering RESTful APIs with Node.js and Express (Updated Edition)\",\n  \"category\": \"Node.js & API Design\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/posts/post-101",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["posts", "post-101"]
+        },
+        "description": "Update an existing post by ID. Returns 200 OK or 404 if not found."
+      }
+    },
+    {
+      "name": "5. DELETE Blog Post by ID",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Accept", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/posts/post-105",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["posts", "post-105"]
+        },
+        "description": "Delete a blog post using its unique ID. Returns 200 OK or 404 Not Found."
+      }
+    },
+    {
+      "name": "6. Validation Test: Missing Fields (Expect 400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/posts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["posts"]
+        },
+        "description": "Tests input validation. Expects 400 Bad Request with field errors array."
+      }
+    },
+    {
+      "name": "7. Error Test: Non-Existent Post (Expect 404)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Accept", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/posts/post-999999",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["posts", "post-999999"]
+        },
+        "description": "Tests 404 handler when querying an ID that does not exist."
+      }
+    }
+  ]
+}

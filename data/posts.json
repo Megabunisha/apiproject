@@ -1,0 +1,47 @@
+[
+  {
+    "id": "post-101",
+    "title": "Mastering RESTful APIs with Node.js and Express",
+    "content": "REST (Representational State Transfer) is an architectural style for building scalable web services. In this guide, we dive deep into HTTP methods, resource URI design, and idempotent operations like GET, PUT, and DELETE.",
+    "author": "Famitha",
+    "category": "Backend Development",
+    "createdAt": "2026-09-20T10:15:00.000Z",
+    "updatedAt": "2026-09-20T10:15:00.000Z"
+  },
+  {
+    "id": "post-102",
+    "title": "Understanding CRUD Operations in Modern Web Apps",
+    "content": "CRUD stands for Create, Read, Update, and Delete. These four basic operations form the foundational backbone of almost every database-driven application on the internet today.",
+    "author": "Alex Rivera",
+    "category": "Web Development",
+    "createdAt": "2026-09-22T14:30:00.000Z",
+    "updatedAt": "2026-09-22T14:30:00.000Z"
+  },
+  {
+    "id": "post-103",
+    "title": "The Power of Middleware in Express.js",
+    "content": "Middleware functions have access to the request object (req), response object (res), and the next middleware function in the application’s request-response cycle. They can execute code, modify objects, and end request cycles.",
+    "author": "Famitha",
+    "category": "Node.js",
+    "createdAt": "2026-09-24T09:00:00.000Z",
+    "updatedAt": "2026-09-24T09:00:00.000Z"
+  },
+  {
+    "id": "post-104",
+    "title": "Best Practices for REST API Error Handling and Status Codes",
+    "content": "Proper HTTP status codes are crucial. Use 200 for OK, 201 for Created, 400 for Bad Request validation errors, 404 for Not Found, and 500 for Internal Server Errors. Always return structured JSON error messages.",
+    "author": "Sarah Chen",
+    "category": "API Design",
+    "createdAt": "2026-09-25T16:45:00.000Z",
+    "updatedAt": "2026-09-25T16:45:00.000Z"
+  },
+  {
+    "id": "post-105",
+    "title": "Testing APIs with Postman and Thunder Client",
+    "content": "Automated and manual testing of REST endpoints ensures your backend handles edge cases, query parameters, malformed JSON, and headers gracefully prior to production deployment.",
+    "author": "Jordan Taylor",
+    "category": "DevOps & Testing",
+    "createdAt": "2026-09-26T11:20:00.000Z",
+    "updatedAt": "2026-09-26T11:20:00.000Z"
+  }
+]
